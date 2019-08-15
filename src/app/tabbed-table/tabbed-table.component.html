@@ -1,0 +1,11 @@
+<mat-tab-group [animationDuration]="(isLoading|async) ? '0' : '300'">
+  <mat-tab label="{{tableTab.tabName}}" *ngFor="let tableTab of (_tabs | async)">
+    <ng-template matTabContent>
+    <div class="loading-shade" *ngIf="isLoading | async">
+      <mat-spinner></mat-spinner>
+    </div>
+    <table-wrapper [dataSource]="tableTab.dataSource" (isLoading)="receiveIsLoading($event)"></table-wrapper>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+
